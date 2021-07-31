@@ -224,7 +224,7 @@ mw_lbl_loc = Label(mw_frm_loc_tmp, text=location_name + "                    " +
 mw_lbl_loc.grid(pady=3)
 mw_frm_qotd = Frame(main_window, bd=2, relief=SOLID, bg="DarkSeaGreen1")
 mw_frm_qotd.place(x=11.5, y=430, width=475, height=90)
-mw_lbl_qotd = Label(mw_frm_qotd, text=quote, font=fa, bg="DarkSeaGreen1", wraplength=480, pady=7, padx=5)
+mw_lbl_qotd = Label(mw_frm_qotd, text=quote, font=fa, bg="DarkSeaGreen1", wraplength=475, pady=7, padx=5)
 mw_lbl_qotd.grid(pady=2)
 
 f = ("Arial", 18, "bold")
