@@ -24,9 +24,12 @@ def f3():
 		sql = "select * from student"
 		cursor.execute(sql)
 		data = cursor.fetchall()
-		for d in data:
-			info = info + "Roll No:" + str(d[0]) + " |" + " Name:" + str(d[1]) + " |" + " Marks:" + str(d[2]) + "\n\n"
-		vw_st_data.insert(INSERT, info)
+		if len(data) != 0:
+			for d in data:
+				info = info + "Roll No:" + str(d[0]) + " |" + " Name:" + str(d[1]) + " |" + " Marks:" + str(d[2]) + "\n\n"
+			vw_st_data.insert(INSERT, info)
+		else:
+			showerror("Error", "No data")
 	except Exception as e:
 		showerror("Error", str(e))
 	finally:
@@ -54,17 +57,20 @@ def f9():
 		sql = "select name, marks from student"
 		cursor.execute(sql)
 		data = cursor.fetchall()
-		name = []
-		marks = []
-		for d in data:
-			name.append(d[0])
-			marks.append(d[1])
-		plt.bar(name, marks, width=0.7, color=["red", "green", "blue"])
-		plt.ylim(0, 105)
-		plt.xlabel("Students")
-		plt.ylabel("Marks")
-		plt.title("Batch Information")
-		plt.show()
+		if len(data) != 0:
+			name = []
+			marks = []
+			for d in data:
+				name.append(d[0])
+				marks.append(d[1])
+			plt.bar(name, marks, width=0.7, color=["red", "green", "blue"])
+			plt.ylim(0, 105)
+			plt.xlabel("Students")
+			plt.ylabel("Marks")
+			plt.title("Batch Information")
+			plt.show()
+		else:
+			showerror("Error", "No data")
 	except Exception as e:
 		showerror("Error", str(e))
 	finally:
