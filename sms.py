@@ -12,7 +12,7 @@ def f1():
 def f2():
 	main_window.deiconify()
 	add_window.withdraw()
-def f3():
+def view():
 	view_window.deiconify()
 	main_window.withdraw()
 	vw_st_data.delete(1.0, END)
@@ -50,7 +50,7 @@ def f7():
 def f8():
 	main_window.deiconify()
 	delete_window.withdraw()
-def f9():
+def charts():
 	try:
 		con = connect("student_data.db")
 		cursor = con.cursor()
@@ -76,7 +76,7 @@ def f9():
 	finally:
 		if con is not None:
 			con.close()
-def f10():
+def add():
 	con = None
 	try:
 		con = connect("student_data.db")
@@ -113,7 +113,7 @@ def f10():
 	finally:
 		if con is not None:
 			con.close()
-def f11():
+def update():
 	con = None
 	try:
 		con = connect("student_data.db")
@@ -154,7 +154,7 @@ def f11():
 		if con is not None:
 			con.close()
 
-def f12():
+def delete():
 	con = None
 	try:
 		con = connect("student_data.db")
@@ -236,10 +236,10 @@ mw_lbl_qotd.grid(pady=2)
 f = ("Arial", 18, "bold")
 
 mw_btn_add = Button(main_window, text="Add", bd=3.5, font=f, width=10, command=f1)
-mw_btn_view = Button(main_window, text="View", bd=3.5, font=f, width=10, command=f3)
+mw_btn_view = Button(main_window, text="View", bd=3.5, font=f, width=10, command=view)
 mw_btn_update = Button(main_window, text="Update", bd=3.5, font=f, width=10, command=f5)
 mw_btn_delete = Button(main_window, text="Delete", bd=3.5, font=f, width=10, command=f7)
-mw_btn_charts = Button(main_window, text="Charts", bd=3.5, font=f, width=10, command=f9)
+mw_btn_charts = Button(main_window, text="Charts", bd=3.5, font=f, width=10, command=charts)
 mw_btn_add.place(x=158.5, y=20)
 mw_btn_view.place(x=158.5, y=90)
 mw_btn_update.place(x=158.5, y=160)
@@ -256,7 +256,7 @@ aw_lbl_name = Label(add_window, text="Enter Name:", font=f, bg="lightblue1")
 aw_ent_name = Entry(add_window, bd=5, width=29, font=f)
 aw_lbl_marks = Label(add_window, text="Enter Marks:", font=f, bg="lightblue1")
 aw_ent_marks = Entry(add_window, width=29, bd=5, font=f)
-aw_btn_save = Button(add_window, text=" Save ", width=10, bd=3.5, font=f, command=f10)
+aw_btn_save = Button(add_window, text=" Save ", width=10, bd=3.5, font=f, command=add)
 aw_btn_back = Button(add_window, text="Back", width=10, bd=3.5, font=f, command=f2)
 aw_lbl_rno.pack(pady=8)
 aw_ent_rno.pack(pady=8)
@@ -290,7 +290,7 @@ uw_lbl_name = Label(update_window, text="Enter Name:", font=f, bg="misty rose")
 uw_ent_name = Entry(update_window, width=29, bd=5, font=f)
 uw_lbl_marks = Label(update_window, text="Enter Marks:", font=f, bg="misty rose")
 uw_ent_marks = Entry(update_window, width=29, bd=5, font=f)
-uw_btn_update = Button(update_window, text="Update", width=10, bd=3.5, font=f, command=f11)
+uw_btn_update = Button(update_window, text="Update", width=10, bd=3.5, font=f, command=update)
 uw_btn_back = Button(update_window, text="Back", width=10, bd=3.5, font=f, command=f6)
 uw_lbl_rno.pack(pady=8)
 uw_ent_rno.pack(pady=8) 
@@ -309,7 +309,7 @@ delete_window.geometry("500x530+650+225")
 
 dw_lbl_rno = Label(delete_window, text="Enter Roll No:", font=f, bg="lightblue1")
 dw_ent_rno = Entry(delete_window, width=29, bd=5, font=f)
-dw_btn_delete = Button(delete_window, text="Delete", width=10, bd=3.5, font=f, command=f12)
+dw_btn_delete = Button(delete_window, text="Delete", width=10, bd=3.5, font=f, command=delete)
 dw_btn_back = Button(delete_window, text="Back", width=10, bd=3.5, font=f, command=f8)
 dw_lbl_rno.pack(pady=8)
 dw_ent_rno.pack(pady=8) 
