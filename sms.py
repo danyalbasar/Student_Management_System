@@ -156,6 +156,7 @@ def update():
 			return
 		
 		cursor.execute(sql % (name, marks, rno))
+		
 		if cursor.rowcount == 1:
 			con.commit()
 			showinfo("Success","record updated")
