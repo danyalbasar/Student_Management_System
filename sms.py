@@ -31,6 +31,7 @@ def view():
 		if len(data) != 0:
 			for d in data:
 				info = info + "Roll No:" + str(d[0]) + " |" + " Name:" + str(d[1]) + " |" + " Marks:" + str(d[2]) + "\n\n"
+				
 			vw_st_data.insert(INSERT, info)
 		else:
 			showerror("Error", "No data")
@@ -71,6 +72,7 @@ def charts():
 		if len(data) != 0:
 			name = []
 			marks = []
+			
 			for d in data:
 				name.append(d[0])
 				marks.append(d[1])
@@ -118,6 +120,7 @@ def add():
 		cursor.execute(sql % (rno, name, marks))
 		con.commit()
 		showinfo("Success","record created")
+		
 		aw_ent_rno.delete(0, END)
 		aw_ent_name.delete(0, END)
 		aw_ent_marks.delete(0, END)
@@ -162,6 +165,7 @@ def update():
 			showinfo("Success","record updated")
 		else:
 			showerror("Error", "record does not exists")
+			
 		uw_ent_rno.delete(0, END)
 		uw_ent_name.delete(0, END)
 		uw_ent_marks.delete(0, END)
@@ -194,6 +198,7 @@ def delete():
 			showinfo("Success","record deleted")
 		else:
 			showerror("Error","record not found")
+			
 		dw_ent_rno.delete(0, END)
 		dw_ent_rno.focus()
 	except Exception as e:
