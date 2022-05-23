@@ -9,12 +9,15 @@ import bs4
 def f1():
 	add_window.deiconify()
 	main_window.withdraw()
+	
 def f2():
 	main_window.deiconify()
 	add_window.withdraw()
+	
 def view():
 	view_window.deiconify()
 	main_window.withdraw()
+	
 	vw_st_data.delete(1.0, END)
 	info = ""
 	con = None
@@ -24,6 +27,7 @@ def view():
 		sql = "select * from student"
 		cursor.execute(sql)
 		data = cursor.fetchall()
+		
 		if len(data) != 0:
 			for d in data:
 				info = info + "Roll No:" + str(d[0]) + " |" + " Name:" + str(d[1]) + " |" + " Marks:" + str(d[2]) + "\n\n"
@@ -35,21 +39,27 @@ def view():
 	finally:
 		if con is not None:
 			con.close()
+			
 def f4():
 	main_window.deiconify()
 	view_window.withdraw()
+	
 def f5():
 	update_window.deiconify()
 	main_window.withdraw()
+	
 def f6():
 	main_window.deiconify()
 	update_window.withdraw()
+	
 def f7():
 	delete_window.deiconify()
 	main_window.withdraw()
+	
 def f8():
 	main_window.deiconify()
 	delete_window.withdraw()
+	
 def charts():
 	try:
 		con = connect("student_data.db")
@@ -57,12 +67,14 @@ def charts():
 		sql = "select name, marks from student"
 		cursor.execute(sql)
 		data = cursor.fetchall()
+		
 		if len(data) != 0:
 			name = []
 			marks = []
 			for d in data:
 				name.append(d[0])
 				marks.append(d[1])
+				
 			plt.bar(name, marks, width=0.7, color=["red", "green", "blue"])
 			plt.ylim(0, 105)
 			plt.xlabel("Students")
@@ -76,6 +88,7 @@ def charts():
 	finally:
 		if con is not None:
 			con.close()
+			
 def add():
 	con = None
 	try:
@@ -85,6 +98,7 @@ def add():
 		rno = aw_ent_rno.get()
 		name = aw_ent_name.get()
 		marks = aw_ent_marks.get()
+		
 		if (not rno.isdigit()) or (len(rno) == 0) or (int (rno) <= 0):
 			showerror("Roll No Issue", "Invalid roll no") 		
 			aw_ent_rno.delete(0, END)
@@ -100,6 +114,7 @@ def add():
 			aw_ent_marks.delete(0, END)
 			aw_ent_marks.focus()
 			return
+		
 		cursor.execute(sql % (rno, name, marks))
 		con.commit()
 		showinfo("Success","record created")
@@ -113,6 +128,7 @@ def add():
 	finally:
 		if con is not None:
 			con.close()
+			
 def update():
 	con = None
 	try:
@@ -122,6 +138,7 @@ def update():
 		name = uw_ent_name.get()
 		marks = uw_ent_marks.get()
 		rno = uw_ent_rno.get()
+		
 		if (not rno.isdigit()) or (len(rno) == 0) or (int (rno) <= 0):
 			showerror("Roll No Issue", "Invalid roll no") 		
 			uw_ent_rno.delete(0, END)
@@ -137,6 +154,7 @@ def update():
 			uw_ent_marks.delete(0, END)
 			uw_ent_marks.focus()
 			return
+		
 		cursor.execute(sql % (name, marks, rno))
 		if cursor.rowcount == 1:
 			con.commit()
@@ -161,12 +179,15 @@ def delete():
 		cursor = con.cursor()
 		sql ="delete from student where rno = '%s'"
 		rno = dw_ent_rno.get()
+		
 		if (not rno.isdigit()) or (len(rno) == 0) or (int (rno) <= 0):
 			showerror("Roll No Issue", "Invalid roll no") 		
 			dw_ent_rno.delete(0, END)
 			dw_ent_rno.focus()
 			return
+		
 		cursor.execute(sql % (rno))
+		
 		if cursor.rowcount == 1:
 			con.commit()
 			showinfo("Success","record deleted")
@@ -195,6 +216,7 @@ try:
 except Exception as e:
 	print("Issue", e)
 	location_name = "Location: Error\t "
+	
 try:
 	api_key = "6aec4029e4a643f15b82009ac24ae555"
 	base_url = "http://api.openweathermap.org/data/2.5/weather?q="
@@ -209,6 +231,7 @@ try:
 except Exception as e:
 	print("Issue", e)
 	tmp = "       Temp: Error"
+	
 try:
 	wa = "https://www.brainyquote.com/quote_of_the_day"
 	res = requests.get(wa)
